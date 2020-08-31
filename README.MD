@@ -1,5 +1,5 @@
-A library with bootstrap spinners for or Angular 4/5/6/7/8/9/10.(https://sonce.github.io/ngx-bootstrap-spinner/).
-It is change by npx-spnner. (https://github.com/Napster2210/ngx-spinner).Thanks!
+A library with bootstrap spinners for or Angular 4/5/6/7/8/9/10.(https://sonce.github.io/ngx-bootstrap-spinner/).</br>
+It is change by npx-spnner. (https://github.com/Napster2210/ngx-spinner/).Thanks!
 
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/sonce/ngx-bootstrap-spinner/gh-pages/assets/logo.png">
@@ -151,8 +151,8 @@ See [Demo](#demo)
 
 - **[bdColor]**: RGBA color format.
   To set background-color for backdrop, default `rgba(51,51,51,0.8)` where `aplha` value(0.8) is opacity of backdrop
-- **[size]**: Anyone from `small`, `default`, `medium`, `large`.
-  To set size of spinner, default `large`
+- **[size]**: Anyone from `small`, `default`.
+  To set size of spinner, default `default`
 - **[color]**: Any css color format.
   To set color of spinner, default `#fff`
 - **[type]**: Bootstrap spinner:border,grow.see (https://getbootstrap.com/docs/4.4/components/spinners/).

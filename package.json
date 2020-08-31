@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-spinner",
-  "version": "10.0.3",
+  "version": "10.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve ngx-tester -o",
@@ -14,7 +14,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^10.0.3",
+    "@angular/animations": "^10.0.14",
     "@angular/cdk": "^10.0.1",
     "@angular/common": "~10.0.3",
     "@angular/compiler": "~10.0.3",

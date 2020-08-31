@@ -13,24 +13,24 @@ import { NgxSpinnerService } from './ngx-spinner.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DEFAULTS, Size, NgxSpinner, PRIMARY_SPINNER, LOADERS } from './ngx-spinner.enum';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+// import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'ngx-bootstrap-spinner',
   templateUrl: 'ngx-spinner.component.html',
   styleUrls: ['ngx-spinner.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('fadeIn', [
-      state('in', style({ opacity: 1 })),
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate(300)
-      ]),
-      transition(':leave',
-        animate(200, style({ opacity: 0 })))
-    ])
-  ]
+  // animations: [
+  //   trigger('fadeIn', [
+  //     state('in', style({ opacity: 1 })),
+  //     transition(':enter', [
+  //       style({ opacity: 0 }),
+  //       animate(300)
+  //     ]),
+  //     transition(':leave',
+  //       animate(200, style({ opacity: 0 })))
+  //   ])
+  // ]
 })
 export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
 
