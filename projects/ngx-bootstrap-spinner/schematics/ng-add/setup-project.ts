@@ -16,7 +16,7 @@ import {
 } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 
-/** Name of the ngx-spinner module */
+/** Name of the ngx-bootstrap-spinner module */
 const spinnerModuleName = 'NgxSpinnerModule';
 
 export default function (options: any): Rule {
@@ -41,7 +41,7 @@ function addSpinnerModule(options: any) {
 
     if (!hasNgModuleImport(host, appModulePath, spinnerModuleName)) {
       addModuleImportToRootModule(host, spinnerModuleName,
-        'ngx-spinner', project);
+        'ngx-bootstrap-spinner', project);
     }
 
     return host;

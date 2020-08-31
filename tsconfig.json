@@ -8,10 +8,10 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/ngx-spinner/tsconfig.lib.json"
+      "path": "./projects/ngx-bootstrap-spinner/tsconfig.lib.json"
     },
     {
-      "path": "./projects/ngx-spinner/tsconfig.spec.json"
+      "path": "./projects/ngx-bootstrap-spinner/tsconfig.spec.json"
     },
     {
       "path": "./projects/ngx-tester/tsconfig.app.json"

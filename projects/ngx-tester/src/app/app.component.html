@@ -8,7 +8,7 @@
     <div class="code-outer">
       <div class="code">
         <div #codeElem>
-          <i class="tag-name">&lt;ngx-spinner</i>
+          <i class="tag-name">&lt;ngx-bootstrap-spinner</i>
 
           <span class="input-wrapper">
             <span class="input-name">bdColor</span>
@@ -42,7 +42,23 @@
             </i>
           </span>
 
-          <span class="input-wrapper">
+          <span class="input-wrapper" *ngIf="spinnerConfig['isButtonSpinner']">
+            <span class="input-name"> isButtonSpinner</span>
+            =
+            <i class="input">
+              <span>"{{spinnerConfig['isButtonSpinner']}}"</span>
+            </i>
+          </span>
+
+          <span class="input-wrapper" *ngIf="spinnerConfig['isButtonSpinner']&&spinnerConfig['autoDisableButton']">
+            <span class="input-name"> autoDisableButton</span>
+            =
+            <i class="input">
+              <span>"{{spinnerConfig['autoDisableButton']}}"</span>
+            </i>
+          </span>
+
+          <span class="input-wrapper" *ngIf="!spinnerConfig['isButtonSpinner']">
             <span class="input-name"> [fullScreen]</span>
             =
             <i class="input">
@@ -57,15 +73,22 @@
               <span>"{{spinnerConfig['template']}}"</span>
             </i>
           </span>
+          <span class="input-wrapper" *ngIf="loadingText">
+            <span class="input-name"> loadingText</span>
+            =
+            <i class="input">
+              <span>"{{spinnerConfig['loadingText']}}"</span>
+            </i>
+          </span>
           <i class="tag-name">&gt;</i>
-          <span class="input-name" style="color: aquamarine;" *ngIf="loadingText">
+          <!-- <span class="input-name" style="color: aquamarine;" *ngIf="loadingText">
             <i class="tag-name">&lt;p
               <span class="input-name">style="color: white"</span>
               &gt;</i>
             {{loadingText}}
             <i class="tag-name">&lt;/p&gt;</i>
-          </span>
-          <i class="tag-name">&lt;/ngx-spinner&gt;</i>
+          </span> -->
+          <i class="tag-name">&lt;/ngx-bootstrap-spinner&gt;</i>
         </div>
         <button mat-button color="accent" class="copy-btn" (click)="copyCode()">Copy</button>
       </div>
@@ -116,11 +139,22 @@
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-          <!-- <mat-radio-group [(ngModel)]="spinnerConfig['fullScreen']" [style.width.%]="90">
-            <label class="mat-input-placeholder mat-form-field-placeholder label-text">Fullscreen Mode</label>
-            <mat-radio-button value="true">On</mat-radio-button>
-            <mat-radio-button value="false">Off</mat-radio-button>
-          </mat-radio-group> -->
+          <label class="mat-input-placeholder mat-form-field-placeholder label-text" [style.width.%]="90"
+            [style.paddingBottom.rem]="3">Button Spinner</label>
+          <mat-slide-toggle class="example-margin" color="primary" [checked]="spinnerConfig['isButtonSpinner']"
+            [style.width.%]="90" (toggleChange)="setButtonSpinnerMode()">
+            {{spinnerConfig['isButtonSpinner'] ? 'Enabled' : 'Disabled'}}
+          </mat-slide-toggle>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="spinnerConfig['isButtonSpinner']">
+          <label class="mat-input-placeholder mat-form-field-placeholder label-text" [style.width.%]="90"
+            [style.paddingBottom.rem]="3">Set own button disabled</label>
+          <mat-slide-toggle class="example-margin" color="primary" [checked]="spinnerConfig['autoDisableButton']"
+            [style.width.%]="90" (toggleChange)="setAutoButtonToDisabled()">
+            {{spinnerConfig['autoDisableButton'] ? 'Enabled' : 'Disabled'}}
+          </mat-slide-toggle>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="!spinnerConfig['isButtonSpinner']">
           <label class="mat-input-placeholder mat-form-field-placeholder label-text" [style.width.%]="90"
             [style.paddingBottom.rem]="3">Fullscreen Mode</label>
           <mat-slide-toggle class="example-margin" color="primary" [checked]="spinnerConfig['fullScreen']"
@@ -136,31 +170,50 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="noOfColumns">
           <mat-form-field appearance="outline" [style.width.%]="97">
-            <mat-label>Custom Template</mat-label>
-            <textarea matInput placeholder="Custom Template" type="text"
-              [(ngModel)]="spinnerConfig['template']"></textarea>
+            <mat-label>Custom Loader Template</mat-label>
+            <textarea matInput placeholder="Custom Loader Template" type="text"
+              [(ngModel)]="spinnerConfig['loaderTemplate']"></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="noOfColumns">
+          <mat-form-field appearance="outline" [style.width.%]="97">
+            <mat-label>Custom LoadingText Template</mat-label>
+            <textarea matInput placeholder="Custom LoadingText Template" type="text"
+              [(ngModel)]="spinnerConfig['loadingTextTemplate']"></textarea>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
-      <div *ngIf="!spinnerConfig['fullScreen']">
-        <ngx-spinner name='sample' [bdColor]="spinnerConfig['bdColor']" [size]="spinnerConfig['size']"
-          [color]="spinnerConfig['color']" [type]="spinnerConfig['type']" [template]="spinnerConfig['template']"
-          [fullScreen]="spinnerConfig['fullScreen']">
-          <p style="color: white">{{loadingText}}</p>
-        </ngx-spinner>
+      <div *ngIf="!spinnerConfig['fullScreen']&&!spinnerConfig['isButtonSpinner']">
+        <ngx-bootstrap-spinner name='sample' [bdColor]="spinnerConfig['bdColor']" [size]="spinnerConfig['size']"
+          [color]="spinnerConfig['color']" [type]="spinnerConfig['type']"
+          [loaderTemplate]="spinnerConfig['loaderTemplate']" [fullScreen]="spinnerConfig['fullScreen']"
+          [loadingText]="loadingText" [isButtonSpinner]="spinnerConfig['isButtonSpinner']"
+          [autoDisableButton]="spinnerConfig['autoDisableButton']"
+          [loadingTextTemplate]="spinnerConfig['loadingTextTemplate']">
+        </ngx-bootstrap-spinner>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
 
   <div class="button-container">
-    <button mat-raised-button color="accent" (click)="showSpinner('sample')" title="Start Spinner">Start
-      Spinner</button>
+    <button class="btn btn-primary" (click)="showSpinner('sample')" title="Start Spinner">
+      <ngx-bootstrap-spinner #btnSpinner name='sample' *ngIf="spinnerConfig['isButtonSpinner']"
+        [bdColor]="spinnerConfig['bdColor']" [size]="spinnerConfig['size']" [color]="spinnerConfig['color']"
+        [type]="spinnerConfig['type']" [loaderTemplate]="spinnerConfig['loaderTemplate']"
+        [fullScreen]="spinnerConfig['fullScreen']" [loadingText]="loadingText"
+        [isButtonSpinner]="spinnerConfig['isButtonSpinner']" [autoDisableButton]="spinnerConfig['autoDisableButton']"
+        [loadingTextTemplate]="spinnerConfig['loadingTextTemplate']">
+      </ngx-bootstrap-spinner>
+      Start Spinner
+    </button>
     <p [style.fontSize.px]="14">(The spinner will be stopped automatically after 3 seconds)</p>
   </div>
 
-  <div *ngIf="spinnerConfig['fullScreen']">
-    <ngx-spinner name='sample' [bdColor]="spinnerConfig['bdColor']" [size]="spinnerConfig['size']"
-      [color]="spinnerConfig['color']" [type]="spinnerConfig['type']" [template]="spinnerConfig['template']">
-      <p style="color: white">{{loadingText}}</p>
-    </ngx-spinner>
+  <div *ngIf="spinnerConfig['fullScreen']&&!spinnerConfig['isButtonSpinner']">
+    <ngx-bootstrap-spinner name='sample' [bdColor]="spinnerConfig['bdColor']" [size]="spinnerConfig['size']"
+      [color]="spinnerConfig['color']" [type]="spinnerConfig['type']" [loadingText]="loadingText"
+      [loaderTemplate]="spinnerConfig['loaderTemplate']" [isButtonSpinner]="spinnerConfig['isButtonSpinner']"
+      [autoDisableButton]="spinnerConfig['autoDisableButton']"
+      [loadingTextTemplate]="spinnerConfig['loadingTextTemplate']">
+    </ngx-bootstrap-spinner>
   </div>

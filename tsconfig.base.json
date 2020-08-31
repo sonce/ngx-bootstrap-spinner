@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "ngx-spinner": [
-        "dist/ngx-spinner"
+      "ngx-bootstrap-spinner": [
+        "dist/ngx-bootstrap-spinner"
       ],
-      "ngx-spinner/*": [
-        "dist/ngx-spinner/*"
+      "ngx-bootstrap-spinner/*": [
+        "dist/ngx-bootstrap-spinner/*"
       ]
     }
   }

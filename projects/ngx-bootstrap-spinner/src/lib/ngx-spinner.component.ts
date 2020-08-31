@@ -6,16 +6,17 @@ import {
   OnChanges,
   SimpleChange,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ElementRef
 } from '@angular/core';
 import { NgxSpinnerService } from './ngx-spinner.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { LOADERS, DEFAULTS, Size, NgxSpinner, PRIMARY_SPINNER } from './ngx-spinner.enum';
+import { DEFAULTS, Size, NgxSpinner, PRIMARY_SPINNER, LOADERS } from './ngx-spinner.enum';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
-  selector: 'ngx-spinner',
+  selector: 'ngx-bootstrap-spinner',
   templateUrl: 'ngx-spinner.component.html',
   styleUrls: ['ngx-spinner.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,30 +77,46 @@ export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
    */
   @Input() zIndex: number;
   /**
-   * Custom template for spinner/loader
+   * Custom loader for spinner/loader
    *
    * @memberof NgxSpinnerComponent
    */
-  @Input() template: string;
+  @Input() loaderTemplate: string;
+  /**
+ * display loading text
+ *
+ * @memberof NgxSpinnerComponent
+ */
+  @Input() loadingText: string;
+  /**
+ * Custom loading text Template for spinner/loader
+ *
+ * @memberof NgxSpinnerComponent
+ */
+  @Input() loadingTextTemplate: string;
+  /**
+   * button Spinner.
+   * https://getbootstrap.com/docs/4.4/components/spinners/#buttons
+   *
+   * @memberof NgxSpinnerComponent
+   *
+   */
+  @Input() isButtonSpinner: boolean = false;
+
+  /**
+   * isButtonSpinner is true and when the spinner shown,the button disabled set to true
+   *
+   * @memberof NgxSpinnerComponent
+   *
+   */
+  @Input() autoDisableButton: boolean = false;
+
   /**
    * Spinner Object
    *
    * @memberof NgxSpinnerComponent
    */
   spinner: NgxSpinner = new NgxSpinner();
-  /**
-   * Array for spinner's divs
-   *
-   * @memberof NgxSpinnerComponent
-   */
-  divArray: Array<number>;
-  /**
-   * Counter for div
-   *
-   * @memberof NgxSpinnerComponent
-   *
-   */
-  divCount: number;
   /**
    * Show spinner
    *
@@ -118,18 +135,16 @@ export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
    *
    * @memberof NgxSpinnerComponent
    */
-  constructor(private spinnerService: NgxSpinnerService, private changeDetector: ChangeDetectorRef) {
+  constructor(private spinnerService: NgxSpinnerService, private changeDetector: ChangeDetectorRef, private elementRef: ElementRef) {
     this.bdColor = DEFAULTS.BD_COLOR;
     this.zIndex = DEFAULTS.Z_INDEX;
     this.color = DEFAULTS.SPINNER_COLOR;
     this.type = DEFAULTS.SPINNER_TYPE;
-    this.size = 'large';
+    this.size = 'default';
     this.fullScreen = true;
     this.name = PRIMARY_SPINNER;
-    this.template = null;
+    this.loaderTemplate = null;
 
-    this.divArray = [];
-    this.divCount = 0;
     this.show = false;
   }
   /**
@@ -139,6 +154,12 @@ export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
    */
   ngOnInit() {
     this.setDefaultOptions();
+    this.spinnerService.getSpinner(this.name).subscribe(x => {
+      if (this.isButtonSpinner && this.autoDisableButton) {
+        let button = (this.elementRef.nativeElement as HTMLElement).closest("button");
+        button.disabled = x.show;
+      }
+    });
     this.spinnerService.getSpinner(this.name)
       .pipe(
         takeUntil(this.ngUnsubscribe)
@@ -165,11 +186,11 @@ export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
       color: this.color,
       type: this.type,
       fullScreen: this.fullScreen,
-      divArray: this.divArray,
-      divCount: this.divCount,
       show: this.show,
       zIndex: this.zIndex,
-      template: this.template,
+      loaderTemplate: this.loaderTemplate,
+      loadingTextTemplate: this.loadingTextTemplate,
+      autoDisableButton:this.autoDisableButton
     });
   }
   /**
@@ -196,24 +217,19 @@ export class NgxSpinnerComponent implements OnDestroy, OnInit, OnChanges {
    *
    * @memberof NgxSpinnerComponent
    */
-  getClass(type: string, size: Size): string {
-    this.spinner.divCount = LOADERS[type];
-    this.spinner.divArray = Array(this.spinner.divCount).fill(0).map((x, i) => i);
+  getClass(type: string, size: Size): string[] {
     let sizeClass = '';
     switch (size.toLowerCase()) {
       case 'small':
-        sizeClass = 'la-sm';
-        break;
-      case 'medium':
-        sizeClass = 'la-2x';
-        break;
-      case 'large':
-        sizeClass = 'la-3x';
+        sizeClass = 'sm';
         break;
       default:
         break;
     }
-    return 'la-' + type + ' ' + sizeClass;
+    if (sizeClass == '')
+      return ['spinner-' + type];
+    else
+      return ['spinner-' + type, 'spinner-' + type + '-' + sizeClass];
   }
   /**
    * Check if input variables have changed

@@ -1,5 +1,5 @@
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 
 const TABLET_SIZE = 768;
 const MOBILE_SIZE = 425;
@@ -22,7 +22,7 @@ export class AppComponent {
    * @type {Array<string>}
    * @memberof AppComponent
    */
-  sizeArray: Array<string> = ['small', 'default', 'medium', 'large'];
+  sizeArray: Array<string> = ['small', 'default'];
 
   /**
    * Loading Text for spinner
@@ -40,11 +40,14 @@ export class AppComponent {
    */
   spinnerConfig: object = {
     bdColor: 'rgba(0, 0, 0, 0.8)',
-    size: 'medium',
+    size: 'default',
     color: '#fff',
-    type: 'square-jelly-box',
+    type: 'border',
     fullScreen: true,
-    template: null,
+    isButtonSpinner: false,
+    loaderTemplate: null,
+    loadingTextTemplate: null,
+    autoDisableButton: false
   };
 
   /**
@@ -54,58 +57,8 @@ export class AppComponent {
    * @memberof AppComponent
    */
   loaders: Array<string> = [
-    'ball-8bits',
-    'ball-atom',
-    'ball-beat',
-    'ball-circus',
-    'ball-climbing-dot',
-    'ball-clip-rotate',
-    'ball-clip-rotate-multiple',
-    'ball-clip-rotate-pulse',
-    'ball-elastic-dots',
-    'ball-fall',
-    'ball-fussion',
-    'ball-grid-beat',
-    'ball-grid-pulse',
-    'ball-newton-cradle',
-    'ball-pulse',
-    'ball-pulse-rise',
-    'ball-pulse-sync',
-    'ball-rotate',
-    'ball-running-dots',
-    'ball-scale',
-    'ball-scale-multiple',
-    'ball-scale-pulse',
-    'ball-scale-ripple',
-    'ball-scale-ripple-multiple',
-    'ball-spin',
-    'ball-spin-clockwise',
-    'ball-spin-clockwise-fade',
-    'ball-spin-clockwise-fade-rotating',
-    'ball-spin-fade',
-    'ball-spin-fade-rotating',
-    'ball-spin-rotate',
-    'ball-square-clockwise-spin',
-    'ball-square-spin',
-    'ball-triangle-path',
-    'ball-zig-zag',
-    'ball-zig-zag-deflect',
-    'cube-transition',
-    'fire',
-    'line-scale',
-    'line-scale-party',
-    'line-scale-pulse-out',
-    'line-scale-pulse-out-rapid',
-    'line-spin-clockwise-fade',
-    'line-spin-clockwise-fade-rotating',
-    'line-spin-fade',
-    'line-spin-fade-rotating',
-    'pacman',
-    'square-jelly-box',
-    'square-loader',
-    'square-spin',
-    'timer',
-    'triangle-skew-spin'
+    'border ',
+    'grow',
   ];
 
   @ViewChild('codeElem') codeElement;
@@ -147,7 +100,7 @@ export class AppComponent {
   }
 
   /**
-   * To copy code of ngx-spinner
+   * To copy code of ngx-bootstrap-spinner
    *
    * @memberof AppComponent
    */
@@ -160,5 +113,13 @@ export class AppComponent {
 
   setFullscreenMode = () => {
     this.spinnerConfig['fullScreen'] = !this.spinnerConfig['fullScreen'];
+  }
+
+  setAutoButtonToDisabled=()=>{
+    this.spinnerConfig['autoDisableButton']=!this.spinnerConfig['autoDisableButton'];
+  }
+
+  setButtonSpinnerMode = () => {
+    this.spinnerConfig['isButtonSpinner'] = !this.spinnerConfig['isButtonSpinner'];
   }
 }

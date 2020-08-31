@@ -1,0 +1,23 @@
+<ng-container *ngIf="!isButtonSpinner">
+  <div [@fadeIn]="'in'" *ngIf="spinner.show"
+    class="overlay d-flex flex-column justify-content-center align-items-center"
+    [style.background-color]="spinner.bdColor" [style.z-index]="spinner.zIndex"
+    [style.position]="spinner.fullScreen ? 'fixed' : 'absolute'" [style.color]="spinner.color">
+    <ng-container [ngTemplateOutlet]="loadingTemplate"></ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isButtonSpinner&&spinner.show" [ngTemplateOutlet]="loadingTemplate">
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <span *ngIf="!loaderTemplate" [ngClass]="spinner.class" role="status" aria-hidden="true">
+    <span class="sr-only">Loading...</span>
+  </span>
+  <div *ngIf="loaderTemplate" [innerHTML]="loaderTemplate | safeHtml"></div>
+  <div *ngIf="!loadingTextTemplate" [ngClass]="{'sr-only': isButtonSpinner,'loading-text':!isButtonSpinner}">
+    {{loadingText}}
+  </div>
+  {{isButtonSpinner&&!loadingTextTemplate?loadingText:""}}
+  <div *ngIf="loadingTextTemplate" [innerHTML]="loadingTextTemplate | safeHtml"></div>
+</ng-template>

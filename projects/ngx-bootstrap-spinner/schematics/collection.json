@@ -2,7 +2,7 @@
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ng-add": {
-      "description": "Add ngx-spinner to the project.",
+      "description": "Add ngx-bootstrap-spinner to the project.",
       "factory": "./ng-add/index"
     },
     "ng-add-setup-project": {

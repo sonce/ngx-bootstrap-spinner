@@ -1,8 +1,9 @@
-A library with more than 50 different loading spinners for Angular 4/5/6/7/8/9/10. (https://napster2210.github.io/ngx-spinner/)
+A library with bootstrap spinners for or Angular 4/5/6/7/8/9/10.(https://sonce.github.io/ngx-bootstrap-spinner/).
+It is change by npx-spnner. (https://github.com/Napster2210/ngx-spinner).Thanks!
 
 <p align="center">
-  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/Napster2210/ngx-spinner/gh-pages/assets/logo.png">
-  <h1 align="center">NgxSpinner</h1>
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/sonce/ngx-bootstrap-spinner/gh-pages/assets/logo.png">
+  <h1 align="center">NgxBootstrapSpinner</h1>
 </p>
 
 [![Support](https://img.shields.io/badge/Support-Angular%204%2B-blue.svg?style=flat-square)]()
@@ -14,13 +15,13 @@ A library with more than 50 different loading spinners for Angular 4/5/6/7/8/9/1
 [![Support](https://img.shields.io/badge/Support-Angular%2010%2B-blue.svg?style=flat-square)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)]()
 [![devDependency Status](https://img.shields.io/david/expressjs/express.svg?style=flat-square)]()
-[![Gitter](https://badges.gitter.im/ngx-spinner/community.svg)](https://gitter.im/ngx-spinner/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## What's New
 
+- change to Bootstrap Spinners
 - Angular 10 support 🥳🥳🥳🥳
 - Latest Angular Dependencies
-- `ng add` command to add `ngx-spinner` to the project
+- `ng add` command to add `ngx-bootstrap-spinner` to the project
 - Bug Fixes
 
 Use appropriate version based on your Angular version.
@@ -36,7 +37,6 @@ Use appropriate version based on your Angular version.
 - [Browser Support](#browser-support)
 - [Features](#features)
 - [Demo](#demo)
-  - [StackBlitz Demo](#stackblitz-demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Methods](#methods)
@@ -44,13 +44,10 @@ Use appropriate version based on your Angular version.
     - [Using Spinner Type](#using-spinner-type)
     - [Using Custom Spinner](#using-custom-spinner)
     - [NOTE](#note)
-  - [How to use type?](#how-to-use-type)
 - [Useful Tips](#useful-tips)
 - [Versioning](#versioning)
 - [Creator](#creator)
-    - [Yuvraj Chauhan](#yuvraj-chauhan)
-- [Future Plan](#future-plan)
-- [Ask Me](#ask-me)
+    - [Zack](#zack)
 - [Credits](#credits)
   - [License](#license)
 
@@ -63,8 +60,8 @@ Use appropriate version based on your Angular version.
 ## Features
 
 - **Angular 10** Support
-- Custom spinner image support(gif), you can pass `img` tag 
-- Multiple Spinners 
+- Custom spinner image support(gif), you can pass `img` tag
+- Bootstrap Spinners
 - Configurable option through service
 - Fullscreen Mode(Enable/Disable)
 - `show()/hide()` methods return promise
@@ -74,38 +71,28 @@ Use appropriate version based on your Angular version.
 
 ## Demo
 
-[Working Demo](https://napster2210.github.io/ngx-spinner/)
-
-### StackBlitz Demo
-
-- [Normal Usage](https://stackblitz.com/edit/angular-kruvnm)
-
-- [Inside Container](https://stackblitz.com/edit/angular-7arfhb)
-
-- [Multiple Spinner](https://stackblitz.com/edit/angular-utwjxi)
-
-- [Change Options Through Service](https://stackblitz.com/edit/angular-exgxk2)
+[Working Demo](https://sonce.github.io/ngx-bootstrap-spinner/)
 
 ## Installation
 
-`ngx-spinner` is available via [npm](https://www.npmjs.com/package/ngx-spinner) and [yarn](https://yarnpkg.com/en/package/ngx-spinner)
+`ngx-bootstrap-spinner` is available via [npm](https://www.npmjs.com/package/ngx-bootstrap-spinner) and [yarn](https://yarnpkg.com/en/package/ngx-bootstrap-spinner)
 
 Using npm:
 
 ```bash
-$ npm install ngx-spinner --save
+$ npm install ngx-bootstrap-spinner --save
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add ngx-spinner
+$ yarn add ngx-bootstrap-spinner
 ```
 
 Using angular-cli:
 
 ```bash
-$ ng add ngx-spinner
+$ ng add ngx-bootstrap-spinner
 ```
 
 ## Usage
@@ -115,7 +102,7 @@ Import `NgxSpinnerModule` in in the root module(`AppModule`):
 ```typescript
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // Import library module
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from "ngx-bootstrap-spinner";
 
 @NgModule({
   imports: [
@@ -127,10 +114,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 export class AppModule {}
 ```
 
-Add `NgxSpinnerService` service wherever you want to use the `ngx-spinner`.
+Add `NgxSpinnerService` service wherever you want to use the `ngx-bootstrap-spinner`.
 
 ```typescript
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-bootstrap-spinner";
 
 class AppComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService) {}
@@ -150,7 +137,7 @@ class AppComponent implements OnInit {
 Now use in your template
 
 ```html
-<ngx-spinner></ngx-spinner>
+<ngx-bootstrap-spinner></ngx-bootstrap-spinner>
 ```
 
 See [Demo](#demo)
@@ -168,35 +155,38 @@ See [Demo](#demo)
   To set size of spinner, default `large`
 - **[color]**: Any css color format.
   To set color of spinner, default `#fff`
-- **[type]**: Choose any animation spinner from [Load Awesome](http://github.danielcardoso.net/load-awesome/animations.html).
-  To set type of spinner, default `ball-scale-multiple`
+- **[type]**: Bootstrap spinner:border,grow.see (https://getbootstrap.com/docs/4.4/components/spinners/).
+  To set type of spinner, default `border`
+- **[isButtonSpinner]**:show loader in button.see(https://getbootstrap.com/docs/4.4/components/spinners/#buttons).
+- **[autoDisableButton]**:when isButtonSpinner is true.and spinner is shown,the own button disabled will set to true.
 - **[fullScreen]**: `true` or `false`
   To enable/disable fullscreen mode(overlay), default `true`
 - **[name]**: For multiple spinners
   To set name for spinner, default `primary`
 - **[zIndex]**: For dynamic z-index
   To set z-index for the spinner, default `99999`
-- **[template]**: For custom spinner image
+- **[loaderTemplate]**: For custom spinner image
   To set custom template for the custom spinner, default `null`
+- **[loadingText]**:Loading text.default:Loading...
+- **[loadingTextTemplate]**:For custom loading text
 
 #### Using Spinner Type
 ```html
-<ngx-spinner
+<ngx-bootstrap-spinner
   bdColor="rgba(51,51,51,0.8)"
-  size="medium"
+  size="default"
   color="#fff"
-  type="ball-scale-multiple"
+  type="border"
 >
-  <p style="font-size: 20px; color: white">Loading...</p>
-</ngx-spinner>
+</ngx-bootstrap-spinner>
 ```
 
 #### Using Custom Spinner
 ```html
-<ngx-spinner
+<ngx-bootstrap-spinner
   bdColor="rgba(0, 0, 0, 1)">
-  template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />" 
-</ngx-spinner>
+  loaderTemplate="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+</ngx-bootstrap-spinner>
 ```
 
 ---
@@ -204,26 +194,18 @@ See [Demo](#demo)
 #### NOTE
 
 - You can pass `HTML` code as loading text now, instead of input parameter(`loadingText`). Check above code for reference.
-- If you want multiple `ngx-spinner` instance, just add `name` attribute with `ngx-spinner` component. But in this case, you've to pass that particular name of a spinner in `show/hide` method. Check [Demo](#demo)
+- If you want multiple `ngx-bootstrap-spinner` instance, just add `name` attribute with `ngx-bootstrap-spinner` component. But in this case, you've to pass that particular name of a spinner in `show/hide` method. Check [Demo](#demo)
 - You can also change the options/configuration of spinner through service now.
 
 ```javascript
 this.spinner.show("mySpinner", {
-  type: "line-scale-party",
-  size: "large",
+  type: "border",
+  size: "default",
   bdColor: "rgba(0, 0, 0, 1)",
   color: "white",
-  template: "<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+  loaderTemplate: "<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
 });
 ```
-
-### How to use type?
-
-- Go to the [Load Awesome](http://github.danielcardoso.net/load-awesome/animations.html).
-- Select any animation, copy name of animation, replace all spaces with hyphen(-) and all letters should be lowercase.
-  - Let's say if I select "Ball 8bits" animation then `type` will be `ball-8bits`.
-  - For more information you can check it out [Demo](https://napster2210.github.io/ngx-spinner/)
-
 
 ## Useful Tips
 
@@ -234,7 +216,7 @@ this.spinner.show("mySpinner", {
 
 ## Versioning
 
-ngx-spinner will be maintained under the Semantic Versioning guidelines.
+ngx-bootstrap-spinner will be maintained under the Semantic Versioning guidelines.
 Releases will be numbered with the following format:
 
 `<major>.<minor>.<patch>`
@@ -243,24 +225,14 @@ For more information on SemVer, please visit http://semver.org.
 
 ## Creator
 
-#### [Yuvraj Chauhan](mailto:yuvrajchauhan3113@gmail.com)
+#### [Zack](mailto:175262582@qq.com)
 
-- [@GitHub](https://github.com/Napster2210)
-
-## Future Plan
-
-- Interceptor Implementation
-- Smaller bundle
-
-## Ask Me
-- Now you can directly send me a message on [Gitter](https://gitter.im/ngx-spinner/community) for any query/suggestion/updates
+- [@GitHub](https://github.com/sonce)
 
 ## Credits
 
-Inspired by [Load Awesome by Daniel Cardoso.](https://github.com/danielcardoso/load-awesome)
-
-Thanks [Alex Vieira Alencar](https://github.com/iamavieira) for helping me with Multiple Spinner Support.
+Inspired by [Load Awesome by Daniel Cardoso.](https://github.com/Napster2210/ngx-spinner)
 
 ### License
 
-ngx-spinner is [MIT licensed](./LICENSE).
+ngx-bootstrap-spinner is [MIT licensed](./LICENSE).

@@ -1,19 +1,19 @@
 {
-  "name": "ngx-spinner",
+  "name": "ngx-bootstrap-spinner",
   "version": "10.0.1",
   "schematics": "./schematics/collection.json",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
-    "copy:collection": "cp schematics/collection.json ../../dist/ngx-spinner/schematics/collection.json",
+    "build": "tsc -p tsconfig.schematics.json",
+    "copy:collection": "ncp schematics/collection.json ../../dist/ngx-bootstrap-spinner/schematics/collection.json",
     "postbuild": "npm run copy:collection"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Napster2210/ngx-spinner.git"
+    "url": "https://github.com/sonce/ngx-bootstrap-spinner.git"
   },
   "author": {
-    "name": "Yuvraj Chauhan",
-    "email": "yuvrajchauhan41@gmail.com"
+    "name": "Zack",
+    "email": "oiqwys@gmail.com"
   },
   "keywords": [
     "angular",
@@ -46,11 +46,12 @@
     "progress-indicators",
     "progress-circle",
     "loaders",
-    "ivy"
+    "ivy",
+    "bootstrap"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Napster2210/ngx-spinner.git/issues"
+    "url": "https://github.com/sonce/ngx-bootstrap-spinner.git/issues"
   },
   "peerDependencies": {
     "@angular/common": "^10.0.0",
